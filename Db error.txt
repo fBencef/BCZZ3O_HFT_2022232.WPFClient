@@ -1,0 +1,8 @@
+Microsoft.Data.SqlClient.SqlException: 'An attempt to attach an auto-named database for file
+G:\OneDrive - Óbudai egyetem\_Tárgyak\Haladó fejlesztési technikák\Labor\Féléves\la-modul4C\bin\Debug\net5.0\VehicleFleetDb.Repository\Fleet.mdf failed.
+A database with the same name exists, or specified file cannot be opened, or it is located on UNC share.'
+
+This exception was originally thrown at this call stack:
+    [External Code]
+    VehicleFleetDb.Repository.FleetDbContext.FleetDbContext() in FleetDbContext.cs
+    VehicleFleetDb.Client.Program.Main(string[]) in Program.cs

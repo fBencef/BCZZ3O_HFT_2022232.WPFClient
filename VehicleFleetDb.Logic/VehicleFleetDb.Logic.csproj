@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleFleetDb.Models\VehicleFleetDb.Models.csproj" />
+    <ProjectReference Include="..\VehicleFleetDb.Repository\VehicleFleetDb.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

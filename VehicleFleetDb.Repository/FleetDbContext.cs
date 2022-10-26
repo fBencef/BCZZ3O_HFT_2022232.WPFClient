@@ -57,7 +57,7 @@ namespace VehicleFleetDb.Repository
                     new Driver(){ DriverId = 3, Name="Nagy Maros", Age=35},
                     new Driver(){ DriverId = 4, Name="Pista Bácsi", Age=66},
                     new Driver(){ DriverId = 5, Name="Floor Jansen", Age=46},
-                    new Driver(){ DriverId = 2, Name="Farkas Gellért Máté", Age=27}
+                    new Driver(){ DriverId = 6, Name="Farkas Gellért Máté", Age=27}
                 });
 
             modelBuilder.Entity<Shift>().HasData(new Shift[]

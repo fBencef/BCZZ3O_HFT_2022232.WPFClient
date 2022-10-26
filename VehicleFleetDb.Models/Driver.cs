@@ -30,13 +30,5 @@ namespace VehicleFleetDb.Models
             Name = parts[0];
             Age = int.Parse(parts[1]);
         }
-
-        public Driver(int id, string line)
-        {
-            string[] parts = line.Split('#');
-            DriverId = id;
-            Name = parts[0];
-            Age = int.Parse(parts[1]);
-        }
     }
 }

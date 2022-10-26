@@ -14,23 +14,12 @@ namespace VehicleFleetDb.Client
 
         static void Create(string entity)
         {
-            //TODO
-            Console.WriteLine(entity + " create");
-            Console.ReadLine();
-
             //DRIVER 
             if (entity == "Driver")
             {
-                Console.WriteLine("Format\nID#NAME#AGE");
+                Console.WriteLine("Format\nNAME#AGE");
                 string item = Console.ReadLine();
-                try
-                {
-                    driverLogic.Create(new Models.Driver(item));
-                }
-                catch
-                {
-                    throw new Exception("Something went wrong.");
-                }
+                driverLogic.Create(new Models.Driver(item));
                 Console.WriteLine("Driver created succesfully.");
             }
             //VEHICLE

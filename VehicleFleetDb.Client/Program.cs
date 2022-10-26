@@ -1,6 +1,3 @@
-// VCS teszt @ GitHub
-// VCS teszt @ NB
-
 using ConsoleTools;
 using System;
 using System.Linq;

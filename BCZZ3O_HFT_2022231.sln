@@ -11,6 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCZZ3O_HFT_2022231.Reposito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCZZ3O_HFT_2022231.Logic", "VehicleFleetDb.Logic\BCZZ3O_HFT_2022231.Logic.csproj", "{89EBC098-9B87-4EEE-A2B5-450416AA84AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{1AF6D5BB-F890-4BC6-8DCF-95C27B0848B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{634374F3-5B4B-4579-8D32-F85711D79B39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{073F33B2-8E33-4EA6-A9E0-6003C4399317}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +42,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9CCEA2F7-4D11-440B-A725-D0E097F58C2C} = {634374F3-5B4B-4579-8D32-F85711D79B39}
+		{EF30DD7D-9D81-4BD0-A2F8-7C8C4EC31782} = {073F33B2-8E33-4EA6-A9E0-6003C4399317}
+		{971EFE67-DFED-4FA5-8142-617D5F72302A} = {1AF6D5BB-F890-4BC6-8DCF-95C27B0848B2}
+		{89EBC098-9B87-4EEE-A2B5-450416AA84AE} = {1AF6D5BB-F890-4BC6-8DCF-95C27B0848B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CB52735-66D3-47EB-B2B1-93AB4C38CBE5}

@@ -1,4 +1,6 @@
-﻿using ConsoleTools;
+// VCS teszt @ GitHub
+
+using ConsoleTools;
 using System;
 using System.Linq;
 using VehicleFleetDb.Logic;

@@ -52,12 +52,12 @@ namespace VehicleFleetDb.Repository
 
             modelBuilder.Entity<Driver>().HasData(new Driver[]
                 {
-                    new Driver(1, "Kiss János#45"),
-                    new Driver(2, "Lantos Johnny#21"),
-                    new Driver(3, "Nagy Maros#35"),
-                    new Driver(4, "Pista bácsi#66"),
-                    new Driver(5, "Floor Jansen#46"),
-                    new Driver(6, "Farkas Gellért Máté#27")
+                    new Driver(){ DriverId = 1, Name="Kiss János", Age=45},
+                    new Driver(){ DriverId = 2, Name="Lantos Johnny", Age=21},
+                    new Driver(){ DriverId = 3, Name="Nagy Maros", Age=35},
+                    new Driver(){ DriverId = 4, Name="Pista Bácsi", Age=66},
+                    new Driver(){ DriverId = 5, Name="Floor Jansen", Age=46},
+                    new Driver(){ DriverId = 2, Name="Farkas Gellért Máté", Age=27}
                 });
 
             modelBuilder.Entity<Shift>().HasData(new Shift[]

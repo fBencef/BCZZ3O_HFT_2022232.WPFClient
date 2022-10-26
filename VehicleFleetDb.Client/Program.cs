@@ -46,10 +46,10 @@ namespace VehicleFleetDb.Client
             if (entity == "Driver")
             {
                 var items = driverLogic.ReadAll();
-                Console.WriteLine("Id" + "\t" + "Name");
+                Console.WriteLine("Id" + "\t" + "Age" +"\t"+ "Name");
                 foreach (var item in items)
                 {
-                    Console.WriteLine(item.DriverId + "\t" + item.Name);
+                    Console.WriteLine($"{item.DriverId}\t{item.Age}\t{item.Name}");
                 }
             }
             //VEHICLE

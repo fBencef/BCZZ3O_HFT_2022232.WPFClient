@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleFleetDb.Client", "VehicleFleetDb.Client\VehicleFleetDb.Client.csproj", "{9CCEA2F7-4D11-440B-A725-D0E097F58C2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCZZ3O_HFT_2022231.Client", "VehicleFleetDb.Client\BCZZ3O_HFT_2022231.Client.csproj", "{9CCEA2F7-4D11-440B-A725-D0E097F58C2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleFleetDb.Models", "VehicleFleetDb.Models\VehicleFleetDb.Models.csproj", "{EF30DD7D-9D81-4BD0-A2F8-7C8C4EC31782}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCZZ3O_HFT_2022231.Models", "VehicleFleetDb.Models\BCZZ3O_HFT_2022231.Models.csproj", "{EF30DD7D-9D81-4BD0-A2F8-7C8C4EC31782}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleFleetDb.Repository", "VehicleFleetDb.Repository\VehicleFleetDb.Repository.csproj", "{971EFE67-DFED-4FA5-8142-617D5F72302A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCZZ3O_HFT_2022231.Repository", "VehicleFleetDb.Repository\BCZZ3O_HFT_2022231.Repository.csproj", "{971EFE67-DFED-4FA5-8142-617D5F72302A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleFleetDb.Logic", "VehicleFleetDb.Logic\VehicleFleetDb.Logic.csproj", "{89EBC098-9B87-4EEE-A2B5-450416AA84AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCZZ3O_HFT_2022231.Logic", "VehicleFleetDb.Logic\BCZZ3O_HFT_2022231.Logic.csproj", "{89EBC098-9B87-4EEE-A2B5-450416AA84AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

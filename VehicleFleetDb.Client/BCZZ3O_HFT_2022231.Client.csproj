@@ -11,8 +11,8 @@
   </ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\VehicleFleetDb.Logic\VehicleFleetDb.Logic.csproj" />
-	  <ProjectReference Include="..\VehicleFleetDb.Models\VehicleFleetDb.Models.csproj" />
+	  <ProjectReference Include="..\VehicleFleetDb.Logic\BCZZ3O_HFT_2022231.Logic.csproj" />
+	  <ProjectReference Include="..\VehicleFleetDb.Models\BCZZ3O_HFT_2022231.Models.csproj" />
 	</ItemGroup>
 
 </Project>

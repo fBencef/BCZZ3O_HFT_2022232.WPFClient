@@ -25,12 +25,10 @@ namespace VehicleFleetDb.Client
             //VEHICLE
             if (entity == "Vehicle")
             {
-                var items = vehicleLogic.ReadAll();
-                Console.WriteLine($"Reg.\tManufacturer\tModel\t\tLenght\tRegistration Date");
-                foreach (var item in items)
-                {
-                    Console.WriteLine($"{item.Registration}\t{item.Manufacturer}\t{item.Model}\t{item.Length} m\t{item.RegistrationDate}");
-                }
+                Console.WriteLine("Format\nREG#MANUFACT#MODEL#LENGTH#REG.DATE(YYYY-MM-DD)");
+                string item = Console.ReadLine();
+                vehicleLogic.Create(new Models.Vehicle(item));
+                Console.WriteLine("Vehicle created succesfully.");
             }
             //SHIFT
             if (entity == "Shift")

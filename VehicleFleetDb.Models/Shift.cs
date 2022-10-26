@@ -10,7 +10,7 @@ namespace VehicleFleetDb.Models
 {
     public class Shift
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int ShiftId { get; set; }
         [StringLength(240)]
@@ -33,13 +33,12 @@ namespace VehicleFleetDb.Models
         public Shift(string line)
         {
             string[] parts = line.Split('#');
-            ShiftId = int.Parse(parts[0]);
-            FromYard = parts[1];
-            Date = DateTime.Parse(parts[2]);
-            Line = parts[3];
-            Tour = parts[4];
-            DriverId = int.Parse(parts[5]);
-            VehicleId = parts[6];
+            FromYard = parts[0];
+            Date = DateTime.Parse(parts[1]);
+            Line = parts[2];
+            Tour = parts[3];
+            DriverId = int.Parse(parts[4]);
+            VehicleId = parts[5];
         }
     }
 }

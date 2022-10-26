@@ -33,12 +33,10 @@ namespace VehicleFleetDb.Client
             //SHIFT
             if (entity == "Shift")
             {
-                var items = shiftLogic.ReadAll();
-                Console.WriteLine($"Id\tYard\t\tDate\t\tLine\tTour\tDriver\tVehicle");
-                foreach (var item in items)
-                {
-                    Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{item.DriverId}\t{item.VehicleId}");
-                }
+                Console.WriteLine("Format\nYARD#DATE(YYY-MM-DD)#LINE#TOUR#DRIVER ID#VEHICLE REG");
+                string item = Console.ReadLine();
+                shiftLogic.Create(new Models.Shift(item));
+                Console.WriteLine("Shift created succesfully.");
             }
 
         }

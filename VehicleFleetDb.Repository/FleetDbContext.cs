@@ -62,10 +62,10 @@ namespace VehicleFleetDb.Repository
 
             modelBuilder.Entity<Shift>().HasData(new Shift[]
                 {
-                    new Shift("1#Bogáncs utca#2022-9-11#204#F10#1#MHU863"),
-                    new Shift("2#Bogáncs utca#2022-9-11#296#F7#3#MHU859"),
-                    new Shift("3#Bogáncs utca#2022-9-11#20E#F15#5#MHU723")
-                });
+                    new Shift(){ ShiftId = 1, FromYard = "Bogáncs utca", Date=DateTime.Parse("2022-9-11"),Line="204",Tour="F10",DriverId=1,VehicleId="MHU863" },
+                    new Shift(){ ShiftId = 2, FromYard = "Bogáncs utca", Date=DateTime.Parse("2022-9-11"),Line="296",Tour="F7",DriverId=3,VehicleId="MHU859" },
+                    new Shift(){ ShiftId = 3, FromYard = "Bogáncs utca", Date=DateTime.Parse("2022-9-11"),Line="20E",Tour="F15",DriverId=5,VehicleId="MHU723" }
+                }) ;
         }
 
     }

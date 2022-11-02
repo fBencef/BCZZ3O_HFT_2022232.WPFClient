@@ -42,7 +42,7 @@ namespace VehicleFleetDb.Logic
 
         public void Update(Driver item)
         {
-            this.repository.Update(item);
+            this.repository.Read(item.DriverId).Name = item.Name;
         }
 
         //TODO >> NON-CRUD METHODS

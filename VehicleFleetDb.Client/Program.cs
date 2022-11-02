@@ -77,9 +77,28 @@ namespace VehicleFleetDb.Client
         }
         static void Update(string entity)
         {
-            //TODO
-            Console.WriteLine(entity + "update");
-            Console.ReadLine();
+            //DRIVER 
+            if (entity == "Driver")
+            {
+                Console.Write("Enter Driver ID: ");
+                int id = int.Parse(Console.ReadLine());
+                var updt = driverLogic.Read(id);
+                Console.Write($"New name of {updt.Name}: ");
+                string newName = Console.ReadLine();
+                updt.Name = newName;
+
+                driverLogic.Update(updt);
+            }
+            //VEHICLE
+            if (entity == "Vehicle")
+            {
+
+            }
+            //SHIFT
+            if (entity == "Shift")
+            {
+
+            }
         }
         static void Delete(string entity)
         {

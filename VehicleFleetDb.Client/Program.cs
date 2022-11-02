@@ -1,6 +1,7 @@
 using ConsoleTools;
 using System;
 using System.Linq;
+using System.Transactions;
 using VehicleFleetDb.Logic;
 using VehicleFleetDb.Repository;
 
@@ -46,7 +47,7 @@ namespace VehicleFleetDb.Client
             if (entity == "Driver")
             {
                 var items = driverLogic.ReadAll();
-                Console.WriteLine("Id" + "\t" + "Age" +"\t"+ "Name");
+                Console.WriteLine("Id" + "\t" + "Age" + "\t" + "Name");
                 foreach (var item in items)
                 {
                     Console.WriteLine($"{item.DriverId}\t{item.Age}\t{item.Name}");
@@ -119,9 +120,37 @@ namespace VehicleFleetDb.Client
         }
         static void Delete(string entity)
         {
-            //TODO
-            Console.WriteLine(entity + "delete");
-            Console.ReadLine();
+            //DRIVER 
+            if (entity == "Driver")
+            {
+                Console.Write("Enter driver ID: ");
+                int id = int.Parse(Console.ReadLine());
+                string name = driverLogic.Read(id).Name;
+                driverLogic.Delete(id);
+                Console.WriteLine($"\nDriver {name} deleted. Press any key to continue.");
+                Console.ReadKey();
+
+            }
+            //VEHICLE
+            if (entity == "Vehicle")
+            {
+                Console.Write("Enter registration (ABC123): ");
+                string reg = Console.ReadLine();
+                var vehicle = vehicleLogic.Read(reg);
+                vehicleLogic.Delete(reg);
+                Console.WriteLine($"\n Vehicle {vehicle.Registration} deleted. Press any key to continue.");
+                Console.ReadKey();
+            }
+            //SHIFT
+            if (entity == "Shift")
+            {
+                Console.Write("Enter shift ID: ");
+                int id = int.Parse(Console.ReadLine());
+                var shift = shiftLogic.Read(id);
+                driverLogic.Delete(id);
+                Console.WriteLine($"\nShift {shift.Line}/{shift.Tour} deleted. Press any key to continue.");
+                Console.ReadKey();
+            }
         }
 
         static void Main(string[] args)

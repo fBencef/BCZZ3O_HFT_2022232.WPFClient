@@ -134,11 +134,13 @@ namespace VehicleFleetDb.Client
             //VEHICLE
             if (entity == "Vehicle")
             {
+                //TODO furcsaság: Olyan veh. törlésénél, ami shift-hez tartozik, a program elszáll. Driver-nél ugyan ez nem áll fenn.
+                
                 Console.Write("Enter registration (ABC123): ");
                 string reg = Console.ReadLine();
                 var vehicle = vehicleLogic.Read(reg);
                 vehicleLogic.Delete(reg);
-                Console.WriteLine($"\n Vehicle {vehicle.Registration} deleted. Press any key to continue.");
+                Console.WriteLine($"\nVehicle {vehicle.Registration} deleted. Press any key to continue.");
                 Console.ReadKey();
             }
             //SHIFT
@@ -168,29 +170,29 @@ namespace VehicleFleetDb.Client
             var vehicleSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Vehicle"))
                 .Add("Create", () => Create("Vehicle"))
-                .Add("Delete", () => Delete("Vehicle"))
                 .Add("Update", () => Update("Vehicle"))
-                .Add("Exit", () => ConsoleMenu.Close());
+                .Add("Delete", () => Delete("Vehicle"))
+                .Add("Back", ConsoleMenu.Close);
 
             var driverSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Driver"))
                 .Add("Create", () => Create("Driver"))
-                .Add("Delete", () => Delete("Driver"))
                 .Add("Update", () => Update("Driver"))
-                .Add("Exit", () => ConsoleMenu.Close());
+                .Add("Delete", () => Delete("Driver"))
+                .Add("Back", ConsoleMenu.Close);
 
             var shiftSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Shift"))
                 .Add("Create", () => Create("Shift"))
-                .Add("Delete", () => Delete("Shift"))
                 .Add("Update", () => Update("Shift"))
-                .Add("Exit", () => ConsoleMenu.Close());
+                .Add("Delete", () => Delete("Shift"))
+                .Add("Back", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Vehicles", () => vehicleSubMenu.Show())
                 .Add("Drivers", () => driverSubMenu.Show())
                 .Add("Shifts", () => shiftSubMenu.Show())
-                .Add("Exit", () => ConsoleMenu.Close());
+                .Add("Exit", () => Environment.Exit(0));
 
             menu.Show();
         }

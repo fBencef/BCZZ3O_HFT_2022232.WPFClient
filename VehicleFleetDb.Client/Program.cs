@@ -93,10 +93,10 @@ namespace VehicleFleetDb.Client
             if (entity == "Vehicle")
             {
                 Console.Write("Enter vehicle registration (ABC123): ");
-                string reg = Console.ReadLine();
+                string reg = Console.ReadLine().ToUpper();
                 var updt = vehicleLogic.Read(reg);
                 Console.Write($"New registartion of {updt.Registration}: ");
-                string newReg = Console.ReadLine();
+                string newReg = Console.ReadLine().ToUpper();
                 updt.DisplayReg = newReg;
 
                 vehicleLogic.Update(updt);

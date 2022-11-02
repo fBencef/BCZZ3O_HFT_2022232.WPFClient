@@ -37,11 +37,12 @@ namespace VehicleFleetDb.Repository
             modelBuilder.Entity<Shift>(shift => shift
                           .HasOne<Vehicle>()
                           .WithMany()
-            .HasForeignKey(shift => shift.VehicleId));
+                          .HasForeignKey(shift => shift.VehicleId)
+                          .OnDelete(DeleteBehavior.Cascade));
             modelBuilder.Entity<Shift>(shift => shift
-                           .HasOne<Driver>()
-                           .WithMany()
-                           .HasForeignKey(shift => shift.DriverId));
+                          .HasOne<Driver>()
+                          .WithMany()
+                          .HasForeignKey(shift => shift.DriverId));
             //SEED CONTENT
             modelBuilder.Entity<Vehicle>().HasData(new Vehicle[]
                 {

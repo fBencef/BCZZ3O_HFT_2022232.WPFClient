@@ -80,7 +80,7 @@ namespace VehicleFleetDb.Client
             //DRIVER 
             if (entity == "Driver")
             {
-                Console.Write("Enter Driver ID: ");
+                Console.Write("Enter driver ID: ");
                 int id = int.Parse(Console.ReadLine());
                 var updt = driverLogic.Read(id);
                 Console.Write($"New name of {updt.Name}: ");
@@ -92,7 +92,14 @@ namespace VehicleFleetDb.Client
             //VEHICLE
             if (entity == "Vehicle")
             {
+                Console.Write("Enter vehicle registration (ABC123): ");
+                string reg = Console.ReadLine();
+                var updt = vehicleLogic.Read(reg);
+                Console.Write($"New registartion of {updt.Registration}: ");
+                string newReg = Console.ReadLine();
+                updt.DisplayReg = newReg;
 
+                vehicleLogic.Update(updt);
             }
             //SHIFT
             if (entity == "Shift")

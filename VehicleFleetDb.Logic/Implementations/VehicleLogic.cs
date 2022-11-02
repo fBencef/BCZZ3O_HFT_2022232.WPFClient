@@ -19,7 +19,7 @@ namespace VehicleFleetDb.Logic
 
         public void Create(Vehicle item)
         {
-            if (item.Registration.Length != 6) throw new ArgumentException("Invalid licene plate!");
+            if (item.Registration.Length != 6) throw new ArgumentException("Invalid licence plate!");
             else this.repository.Create(item);
         }
 
@@ -42,7 +42,7 @@ namespace VehicleFleetDb.Logic
 
         public void Update(Vehicle item)
         {
-            this.repository.Update(item);
+            this.repository.Read(item.Registration).Registration = item.DisplayReg;
         }
 
         //TODO >> NON-CRUD METHODS

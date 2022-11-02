@@ -13,6 +13,9 @@ namespace VehicleFleetDb.Models
         [Required]
         [StringLength(6)]
         public string Registration { get; set; }
+
+        public string DisplayReg { get; set; }
+
         [StringLength(240)]
         public string Manufacturer { get; set; }
         [StringLength(240)]
@@ -30,6 +33,7 @@ namespace VehicleFleetDb.Models
         {
             string[] parts = line.Split('#');
             Registration = parts[0];
+            DisplayReg = Registration;
             Manufacturer = parts[1];
             Model = parts[2];
             Length = int.Parse(parts[3]);

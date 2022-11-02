@@ -72,8 +72,8 @@ namespace VehicleFleetDb.Client
                     Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{item.DriverId}\t{item.VehicleId}");
                 }
             }
-
-            Console.ReadLine();
+            Console.WriteLine("\nPress any key to return.");
+            Console.ReadKey();
         }
         static void Update(string entity)
         {
@@ -104,7 +104,17 @@ namespace VehicleFleetDb.Client
             //SHIFT
             if (entity == "Shift")
             {
+                Console.Write("Enter shift ID: ");
+                int id = int.Parse(Console.ReadLine());
+                var updt = shiftLogic.Read(id);
+                Console.Write($"New >line< of shift #{updt.ShiftId}: ");
+                string newLine = Console.ReadLine();
+                Console.Write($"New >tour< of shift #{updt.ShiftId}: ");
+                string newTour = Console.ReadLine();
+                updt.Line = newLine;
+                updt.Tour = newTour;
 
+                shiftLogic.Update(updt);
             }
         }
         static void Delete(string entity)

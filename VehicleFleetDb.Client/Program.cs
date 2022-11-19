@@ -134,10 +134,8 @@ namespace VehicleFleetDb.Client
             //VEHICLE
             if (entity == "Vehicle")
             {
-                //TODO furcsaság: Olyan veh. törlésénél, ami shift-hez tartozik, a program elszáll. Driver-nél ugyan ez nem áll fenn.
-                
                 Console.Write("Enter registration (ABC123): ");
-                string reg = Console.ReadLine();
+                string reg = Console.ReadLine().ToUpper();
                 var vehicle = vehicleLogic.Read(reg);
                 vehicleLogic.Delete(reg);
                 Console.WriteLine($"\nVehicle {vehicle.Registration} deleted. Press any key to continue.");
@@ -149,7 +147,7 @@ namespace VehicleFleetDb.Client
                 Console.Write("Enter shift ID: ");
                 int id = int.Parse(Console.ReadLine());
                 var shift = shiftLogic.Read(id);
-                driverLogic.Delete(id);
+                shiftLogic.Delete(id);
                 Console.WriteLine($"\nShift {shift.Line}/{shift.Tour} deleted. Press any key to continue.");
                 Console.ReadKey();
             }

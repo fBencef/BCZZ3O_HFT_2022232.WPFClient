@@ -24,6 +24,10 @@ namespace VehicleFleetDb.Models
         public int DriverId { get; set; }
         [ForeignKey(nameof(Vehicle))]
         public string VehicleId { get; set; }
+        [NotMapped]
+        public virtual Driver Driver { get; }
+        [NotMapped]
+        public virtual Vehicle Vehicle { get; }
 
         public Shift()
         {

@@ -18,6 +18,8 @@ namespace VehicleFleetDb.Models
         public string Name { get; set; }
         [Range(21, 70)]
         public int Age { get; set; }
+        [NotMapped]
+        public virtual ICollection<Shift> Shifts { get; }
 
         public Driver()
         {

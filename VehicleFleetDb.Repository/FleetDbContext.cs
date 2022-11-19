@@ -34,15 +34,16 @@ namespace VehicleFleetDb.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //REALTIONS
-            modelBuilder.Entity<Shift>(shift => shift
-                          .HasOne<Vehicle>()
-                          .WithMany()
-                          .HasForeignKey(shift => shift.VehicleId)
-                          .OnDelete(DeleteBehavior.Cascade));
-            modelBuilder.Entity<Shift>(shift => shift
-                          .HasOne<Driver>()
-                          .WithMany()
-                          .HasForeignKey(shift => shift.DriverId));
+            modelBuilder.Entity<Shift>()
+                          .HasOne(t => t.Vehicle)
+                          .WithMany(t => t.Shifts)
+                          .HasForeignKey(t => t.VehicleId)
+                          .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Shift>()
+                          .HasOne(t => t.Driver)
+                          .WithMany(t => t.Shifts)
+                          .HasForeignKey(t => t.DriverId)
+                          .OnDelete(DeleteBehavior.Cascade);
             //SEED CONTENT
             modelBuilder.Entity<Vehicle>().HasData(new Vehicle[]
                 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace VehicleFleetDb.Models
         [Range(10, 20)]
         public int Length { get; set; }
         public DateTime RegistrationDate { get; set; }
+        [NotMapped]
+        public virtual ICollection<Shift> Shifts { get; set; }
 
         public Vehicle()
         {

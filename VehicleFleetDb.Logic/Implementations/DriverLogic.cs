@@ -45,6 +45,10 @@ namespace VehicleFleetDb.Logic
             this.repository.Read(item.DriverId).Name = item.Name;
         }
 
-        //TODO >> NON-CRUD METHODS
+        //NON-CRUDs
+        public double? AvgDriverAge()
+        {
+            return this.repository.ReadAll().Average(t => t.Age);
+        }
     }
 }

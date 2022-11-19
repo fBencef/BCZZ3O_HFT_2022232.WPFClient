@@ -46,5 +46,9 @@ namespace VehicleFleetDb.Logic
         }
 
         //TODO >> NON-CRUD METHODS
+        //public ICollection<> ListModels(string manufacturer)
+        //{ 
+        //    
+        //}
     }
 }

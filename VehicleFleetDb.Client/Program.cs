@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Transactions;
 using VehicleFleetDb.Logic;
+using VehicleFleetDb.Models;
 using VehicleFleetDb.Repository;
 
 namespace VehicleFleetDb.Client
@@ -153,6 +154,25 @@ namespace VehicleFleetDb.Client
             }
         }
 
+        static void ShiftListWithDriverNames()
+        {
+            var items = shiftLogic.ReadAll();
+            Console.WriteLine($"Id\tYard\t\tDate\t\tLine\tTour\tDriver Name\t\tVehicle");
+            foreach (var item in items)
+            {
+                string name = shiftLogic.GetDriver(item).Name;
+                Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{name}\t\t{item.VehicleId}");
+            }
+            Console.WriteLine("\nPress any key to return.");
+            Console.ReadKey();
+        }
+        static void DriverAvgAge()
+        {
+            Console.WriteLine($"The average age of drivers is: {Math.Round((double)driverLogic.AvgDriverAge(),2)} years.");
+            Console.WriteLine("\nPress any key to return.");
+            Console.ReadKey();
+        }
+
         static void Main(string[] args)
         {
             var ctx = new FleetDbContext();
@@ -177,6 +197,7 @@ namespace VehicleFleetDb.Client
                 .Add("Create", () => Create("Driver"))
                 .Add("Update", () => Update("Driver"))
                 .Add("Delete", () => Delete("Driver"))
+                .Add("Average Age", () => DriverAvgAge())
                 .Add("Back", ConsoleMenu.Close);
 
             var shiftSubMenu = new ConsoleMenu(args, level: 1)
@@ -184,6 +205,7 @@ namespace VehicleFleetDb.Client
                 .Add("Create", () => Create("Shift"))
                 .Add("Update", () => Update("Shift"))
                 .Add("Delete", () => Delete("Shift"))
+                .Add("List With Driver Names", () => ShiftListWithDriverNames())
                 .Add("Back", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)

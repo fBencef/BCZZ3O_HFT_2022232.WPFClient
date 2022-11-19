@@ -44,6 +44,10 @@ namespace VehicleFleetDb.Logic
             this.repository.Update(item);
         }
 
-        //TODO >> NON-CRUD METHODS
+        //NON-CRUDs
+        public Driver GetDriver(Shift item)
+        {
+            return item.Driver;
+        }
     }
 }

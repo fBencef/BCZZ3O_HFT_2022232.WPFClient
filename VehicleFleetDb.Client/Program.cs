@@ -40,6 +40,7 @@ namespace VehicleFleetDb.Client
                 shiftLogic.Create(new Models.Shift(item));
                 Console.WriteLine("Shift created succesfully.");
             }
+            WaitForReturn();
 
         }
         static void List(string entity)
@@ -74,8 +75,7 @@ namespace VehicleFleetDb.Client
                     Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{item.DriverId}\t{item.VehicleId}");
                 }
             }
-            Console.WriteLine("\nPress any key to return.");
-            Console.ReadKey();
+            WaitForReturn();
         }
         static void Update(string entity)
         {
@@ -163,12 +163,57 @@ namespace VehicleFleetDb.Client
                 string name = shiftLogic.GetDriver(item).Name;
                 Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{name}\t\t{item.VehicleId}");
             }
-            Console.WriteLine("\nPress any key to return.");
-            Console.ReadKey();
+            WaitForReturn();
         }
         static void DriverAvgAge()
         {
-            Console.WriteLine($"The average age of drivers is: {Math.Round((double)driverLogic.AvgDriverAge(),2)} years.");
+            Console.WriteLine($"The average age of drivers is: {Math.Round((double)driverLogic.AvgDriverAge(), 2)} years.");
+            WaitForReturn();
+        }
+        static void DriverShifts()
+        {
+            //TODO: nem mûködik az üres lista és a nem létzõ Driver kezelése
+            Console.Write("Enter driver's name: ");
+            string name = Console.ReadLine();
+            if (driverLogic.Read(name) != null)
+            {
+                var items = driverLogic.ShiftsOfDriver(name);
+                if (items.ToArray().Length > 0)
+                {
+                    Console.WriteLine($"Driver {name} has the following shifts: ");
+                    foreach (var item in items)
+                    {
+                        item.ToArray();
+                        foreach (var id in item)
+                        {
+                            var shift = shiftLogic.Read(id);
+                            Console.WriteLine($"{shift.Line}/{shift.Tour} @ {shift.Date.ToShortDateString()}");
+                        }
+                    }
+                }
+                else Console.WriteLine($"Driver {name} has no shifts.");
+            }
+            WaitForReturn();
+        }
+        static void VehicleListModels()
+        {
+            Console.Write("Enter a manufacturer: ");
+            string manufacturer = Console.ReadLine();
+            var result = vehicleLogic.ListModels(manufacturer);
+            if (result.ToArray().Length > 0)
+            {
+                Console.WriteLine($"\nThe manufacturer {manufacturer} has the following models in the fleet:");
+                foreach (var item in result)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            else Console.WriteLine($"\nThe manufacturer \"{manufacturer}\" does not exist or has no models in the fleet.");
+            WaitForReturn();
+        }
+
+        private static void WaitForReturn()
+        {
             Console.WriteLine("\nPress any key to return.");
             Console.ReadKey();
         }
@@ -190,6 +235,7 @@ namespace VehicleFleetDb.Client
                 .Add("Create", () => Create("Vehicle"))
                 .Add("Update", () => Update("Vehicle"))
                 .Add("Delete", () => Delete("Vehicle"))
+                .Add("List Models of a Manufacturer", () => VehicleListModels())
                 .Add("Back", ConsoleMenu.Close);
 
             var driverSubMenu = new ConsoleMenu(args, level: 1)
@@ -198,6 +244,7 @@ namespace VehicleFleetDb.Client
                 .Add("Update", () => Update("Driver"))
                 .Add("Delete", () => Delete("Driver"))
                 .Add("Average Age", () => DriverAvgAge())
+                .Add("Drives On...", () => DriverShifts())
                 .Add("Back", ConsoleMenu.Close);
 
             var shiftSubMenu = new ConsoleMenu(args, level: 1)

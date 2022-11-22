@@ -45,10 +45,10 @@ namespace VehicleFleetDb.Logic
             this.repository.Read(item.Registration).Registration = item.DisplayReg;
         }
 
-        //TODO >> NON-CRUD METHODS
-        //public ICollection<> ListModels(string manufacturer)
-        //{ 
-        //    
-        //}
+        //NON-CRUDs
+        public IQueryable<string> ListModels(string manufacturer)
+        {
+            return this.repository.ReadAll().Where(t => t.Manufacturer == manufacturer).Select(t => t.Model).Distinct();
+        }
     }
 }

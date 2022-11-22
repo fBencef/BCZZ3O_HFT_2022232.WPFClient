@@ -34,6 +34,12 @@ namespace VehicleFleetDb.Logic
             if (driver == null) throw new ArgumentException("Driver could not be found.");
             return driver;
         }
+        public Driver Read(string name)
+        {
+            var driver = this.repository.ReadAll().Where(t => t.Name == name);
+            if (driver.ToArray().Length == 0) throw new ArgumentException("Driver could not be found.");
+            return driver.FirstOrDefault();
+        }
 
         public IQueryable<Driver> ReadAll()
         {
@@ -49,6 +55,13 @@ namespace VehicleFleetDb.Logic
         public double? AvgDriverAge()
         {
             return this.repository.ReadAll().Average(t => t.Age);
+        }
+
+        public IQueryable<IEnumerable<int>>  ShiftsOfDriver(string name)
+        {
+            var result = this.repository.ReadAll().Where(t => t.Name == name).Select(t => t.Shifts);
+            return result.Select(t => t.Select(t => t.ShiftId));
+            //return .Select(t => t.Select(t => t.ShiftId));
         }
     }
 }

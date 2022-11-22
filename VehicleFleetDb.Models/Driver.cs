@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace VehicleFleetDb.Models
 {
@@ -19,6 +20,7 @@ namespace VehicleFleetDb.Models
         [Range(21, 70)]
         public int Age { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Shift> Shifts { get; }
 
         public Driver()

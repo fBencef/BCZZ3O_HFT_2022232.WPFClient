@@ -8,7 +8,7 @@ using VehicleFleetDb.Repository;
 
 namespace VehicleFleetDb.Logic
 {
-    public class DriverLogic
+    public class DriverLogic : IDriverLogic
     {
         IRepository<Driver, int> repository;
         public DriverLogic(IRepository<Driver, int> repository)
@@ -62,6 +62,11 @@ namespace VehicleFleetDb.Logic
             var result = this.repository.ReadAll().Where(t => t.Name == name).Select(t => t.Shifts);
             return result.Select(t => t.Select(t => t.ShiftId));
             //return .Select(t => t.Select(t => t.ShiftId));
+        }
+
+        IEnumerable<Driver> IDriverLogic.ReadAll()
+        {
+            return this.repository.ReadAll();
         }
     }
 }

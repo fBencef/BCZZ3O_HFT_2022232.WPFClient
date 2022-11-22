@@ -8,7 +8,7 @@ using VehicleFleetDb.Repository;
 
 namespace VehicleFleetDb.Logic
 {
-    public class ShiftLogic
+    public class ShiftLogic : IShiftLogic
     {
         IRepository<Shift, int> repository;
         public ShiftLogic(IRepository<Shift, int> repository)
@@ -48,6 +48,11 @@ namespace VehicleFleetDb.Logic
         public Driver GetDriver(Shift item)
         {
             return item.Driver;
+        }
+
+        IEnumerable<Shift> IShiftLogic.ReadAll()
+        {
+            return this.repository.ReadAll();
         }
     }
 }

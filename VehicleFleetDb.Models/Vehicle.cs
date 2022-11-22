@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace VehicleFleetDb.Models
@@ -25,6 +26,7 @@ namespace VehicleFleetDb.Models
         public int Length { get; set; }
         public DateTime RegistrationDate { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Shift> Shifts { get; set; }
 
         public Vehicle()

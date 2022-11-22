@@ -7,7 +7,7 @@ using VehicleFleetDb.Models;
 
 namespace VehicleFleetDb.Logic
 {
-    public interface IdriverLogic
+    public interface IDriverLogic
     {
         void Create(Driver item);
         void Delete(int id);

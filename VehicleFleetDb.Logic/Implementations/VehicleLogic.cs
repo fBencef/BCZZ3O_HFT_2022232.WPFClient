@@ -9,7 +9,7 @@ using VehicleFleetDb.Repository;
 
 namespace VehicleFleetDb.Logic
 {
-    public class VehicleLogic
+    public class VehicleLogic : IVehicleLogic
     {
         IRepository<Vehicle, string> repository;
         public VehicleLogic(IRepository<Vehicle, string> repository)
@@ -49,6 +49,11 @@ namespace VehicleFleetDb.Logic
         public IQueryable<string> ListModels(string manufacturer)
         {
             return this.repository.ReadAll().Where(t => t.Manufacturer == manufacturer).Select(t => t.Model).Distinct();
+        }
+
+        IEnumerable<Vehicle> IVehicleLogic.ReadAll()
+        {
+            return this.repository.ReadAll();
         }
     }
 }

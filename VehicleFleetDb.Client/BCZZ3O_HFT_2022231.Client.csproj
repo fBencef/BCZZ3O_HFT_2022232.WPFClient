@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RestService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Program.csUnused" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ConsoleMenu-simple" Version="2.4.3" />
   </ItemGroup>
 

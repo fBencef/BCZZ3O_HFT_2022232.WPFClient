@@ -45,15 +45,17 @@ namespace VehicleFleetDb.Logic
             this.repository.Read(item.Registration).Registration = item.DisplayReg;
         }
 
+        IEnumerable<Vehicle> IVehicleLogic.ReadAll()
+        {
+            return this.repository.ReadAll();
+        }
+
         //NON-CRUDs
         public IQueryable<string> ListModels(string manufacturer)
         {
             return this.repository.ReadAll().Where(t => t.Manufacturer == manufacturer).Select(t => t.Model).Distinct();
         }
 
-        IEnumerable<Vehicle> IVehicleLogic.ReadAll()
-        {
-            return this.repository.ReadAll();
-        }
+
     }
 }

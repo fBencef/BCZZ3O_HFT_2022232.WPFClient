@@ -51,6 +51,11 @@ namespace VehicleFleetDb.Logic
             this.repository.Read(item.DriverId).Name = item.Name;
         }
 
+        IEnumerable<Driver> IDriverLogic.ReadAll()
+        {
+            return this.repository.ReadAll();
+        }
+
         //NON-CRUDs
         public double? AvgDriverAge()
         {
@@ -64,9 +69,6 @@ namespace VehicleFleetDb.Logic
             //return .Select(t => t.Select(t => t.ShiftId));
         }
 
-        IEnumerable<Driver> IDriverLogic.ReadAll()
-        {
-            return this.repository.ReadAll();
-        }
+
     }
 }

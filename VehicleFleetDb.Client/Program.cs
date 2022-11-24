@@ -175,19 +175,16 @@ namespace VehicleFleetDb.Client
         {
             Console.Write("Enter driver's name: ");
             string name = Console.ReadLine();
-            if (driverLogic.Read(name) != null)
+            var shifts = driverLogic.ShiftsOdDriverModified(name);
+            if (!shifts.IsNullOrEmpty())
             {
-                var shifts = driverLogic.ShiftsOdDriverModified(name);
-                if (!shifts.IsNullOrEmpty())
+                Console.WriteLine($"Driver {name} has the following shifts: ");
+                foreach (var item in shifts)
                 {
-                    Console.WriteLine($"Driver {name} has the following shifts: ");
-                    foreach (var item in shifts)
-                    {
-                        Console.WriteLine($"{item.Line}/{item.Tour}");
-                    }
+                    Console.WriteLine($"{item.Line}/{item.Tour}");
                 }
-                else Console.WriteLine("This driver has no active shifts.");
             }
+            else Console.WriteLine("This driver has no active shifts.");
             WaitForReturn();
         }
         static void VehicleListModels()
@@ -204,6 +201,22 @@ namespace VehicleFleetDb.Client
                 }
             }
             else Console.WriteLine($"\nThe manufacturer \"{manufacturer}\" does not exist or has no models in the fleet.");
+            WaitForReturn();
+        }
+        static void VehcleListDrivers()
+        {
+            Console.Write("Enter a registration:");
+            string reg = Console.ReadLine().ToUpper(); ;
+            var results = vehicleLogic.ListDrivers(reg);
+            if (!results.IsNullOrEmpty())
+            {
+                Console.WriteLine($"Vehicle {reg} is driven by:");
+                foreach (var item in results)
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
+            else Console.WriteLine("This vehicle has no drivers.");
             WaitForReturn();
         }
 
@@ -231,6 +244,7 @@ namespace VehicleFleetDb.Client
                 .Add("Update", () => Update("Vehicle"))
                 .Add("Delete", () => Delete("Vehicle"))
                 .Add("List Models of a Manufacturer", () => VehicleListModels())
+                .Add("List Drivers", () => VehcleListDrivers())
                 .Add("Back", ConsoleMenu.Close);
 
             var driverSubMenu = new ConsoleMenu(args, level: 1)

@@ -99,7 +99,7 @@ namespace BCZZ3O_HFT_2022231.Test
         [Test]
         public void ShiftsOfDriverTest()
         {
-            var shifts = driverLogic.ShiftsOfDriver("Driver1");
+            var shifts = driverLogic.ShiftsOdDriverModified("Driver1");
 
             Assert.That(shifts.ToArray()[0], Is.EqualTo(1));
         }

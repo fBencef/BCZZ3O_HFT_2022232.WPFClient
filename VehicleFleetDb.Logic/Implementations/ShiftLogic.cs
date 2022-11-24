@@ -54,12 +54,5 @@ namespace VehicleFleetDb.Logic
         {
             return item.Driver;
         }
-
-        //public Vehicle GetVehicleAndDriver(Shift item)
-        //{ 
-        //    
-        //}
-
-
     }
 }

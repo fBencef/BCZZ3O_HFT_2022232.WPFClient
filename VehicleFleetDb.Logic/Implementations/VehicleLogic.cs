@@ -56,6 +56,12 @@ namespace VehicleFleetDb.Logic
             return this.repository.ReadAll().Where(t => t.Manufacturer == manufacturer).Select(t => t.Model).Distinct();
         }
 
+        public IQueryable<Driver> ListDrivers(string registarton)
+        { 
+            var shifts = this.repository.ReadAll().Where(t => t.Registration == registarton).SelectMany(t => t.Shifts);
+            return shifts.Select(t => t.Driver);
+        }
+
 
     }
 }

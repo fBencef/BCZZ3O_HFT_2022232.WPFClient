@@ -62,11 +62,9 @@ namespace VehicleFleetDb.Logic
             return this.repository.ReadAll().Average(t => t.Age);
         }
 
-        public IQueryable<IEnumerable<int>>  ShiftsOfDriver(string name)
+        public IQueryable<Shift> ShiftsOdDriverModified(string name)
         {
-            var result = this.repository.ReadAll().Where(t => t.Name == name).Select(t => t.Shifts);
-            return result.Select(t => t.Select(t => t.ShiftId));
-            //return .Select(t => t.Select(t => t.ShiftId));
+            return this.repository.ReadAll().Where(t => t.Name == name).SelectMany(t => t.Shifts);
         }
 
 

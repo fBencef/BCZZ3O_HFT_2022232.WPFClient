@@ -44,15 +44,22 @@ namespace VehicleFleetDb.Logic
             this.repository.Update(item);
         }
 
+        IEnumerable<Shift> IShiftLogic.ReadAll()
+        {
+            return this.repository.ReadAll();
+        }
+
         //NON-CRUDs
         public Driver GetDriver(Shift item)
         {
             return item.Driver;
         }
 
-        IEnumerable<Shift> IShiftLogic.ReadAll()
-        {
-            return this.repository.ReadAll();
-        }
+        //public Vehicle GetVehicleAndDriver(Shift item)
+        //{ 
+        //    
+        //}
+
+
     }
 }

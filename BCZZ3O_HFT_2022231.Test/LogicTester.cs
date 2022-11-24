@@ -109,10 +109,10 @@ namespace BCZZ3O_HFT_2022231.Test
         {
             //Nem működik >> LAZY LOADING ???
 
-            ////Shift shift = shiftLogic.Read(1);
-            //Shift shift = new Shift() { ShiftId = 1, FromYard = "Yard name", Date = DateTime.Parse("2022-11-02"), Line = "001", Tour = "F1", DriverId = 1, VehicleId = "AAA111" };
-            //Driver item = shiftLogic.GetDriver(shift);
-            //Assert.That(item.DriverId, Is.EqualTo(1));
+            //Shift shift = shiftLogic.Read(1);
+            Shift shift = new Shift() { ShiftId = 1, FromYard = "Yard name", Date = DateTime.Parse("2022-11-02"), Line = "001", Tour = "F1", DriverId = 1, VehicleId = "AAA111" };
+            Driver item = shiftLogic.GetDriver(shift);
+            Assert.That(item.DriverId, Is.EqualTo(1));
         }
 
 

@@ -1,3 +1,4 @@
+using Castle.Core.Internal;
 using ConsoleTools;
 using System;
 using System.Linq;
@@ -170,28 +171,22 @@ namespace VehicleFleetDb.Client
             Console.WriteLine($"The average age of drivers is: {Math.Round((double)driverLogic.AvgDriverAge(), 2)} years.");
             WaitForReturn();
         }
-        static void DriverShifts()
+        static void DriverShiftsModified()
         {
-            //TODO: nem mûködik az üres lista és a nem létzõ Driver kezelése
             Console.Write("Enter driver's name: ");
             string name = Console.ReadLine();
             if (driverLogic.Read(name) != null)
             {
-                var items = driverLogic.ShiftsOfDriver(name);
-                if (items.ToArray().Length > 0)
+                var shifts = driverLogic.ShiftsOdDriverModified(name);
+                if (!shifts.IsNullOrEmpty())
                 {
                     Console.WriteLine($"Driver {name} has the following shifts: ");
-                    foreach (var item in items)
+                    foreach (var item in shifts)
                     {
-                        item.ToArray();
-                        foreach (var id in item)
-                        {
-                            var shift = shiftLogic.Read(id);
-                            Console.WriteLine($"{shift.Line}/{shift.Tour} @ {shift.Date.ToShortDateString()}");
-                        }
+                        Console.WriteLine($"{item.Line}/{item.Tour}");
                     }
                 }
-                else Console.WriteLine($"Driver {name} has no shifts.");
+                else Console.WriteLine("This driver has no active shifts.");
             }
             WaitForReturn();
         }
@@ -244,7 +239,7 @@ namespace VehicleFleetDb.Client
                 .Add("Update", () => Update("Driver"))
                 .Add("Delete", () => Delete("Driver"))
                 .Add("Average Age", () => DriverAvgAge())
-                .Add("Drives On...", () => DriverShifts())
+                .Add("Drives On...", () => DriverShiftsModified())
                 .Add("Back", ConsoleMenu.Close);
 
             var shiftSubMenu = new ConsoleMenu(args, level: 1)

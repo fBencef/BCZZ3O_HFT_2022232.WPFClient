@@ -7,19 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="RestService.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Program.csUnused" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ConsoleMenu-simple" Version="2.4.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
   </ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\VehicleFleetDb.Logic\BCZZ3O_HFT_2022231.Logic.csproj" />
 	  <ProjectReference Include="..\VehicleFleetDb.Models\BCZZ3O_HFT_2022231.Models.csproj" />
 	</ItemGroup>
 

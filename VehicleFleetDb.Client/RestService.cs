@@ -87,7 +87,7 @@ namespace VehicleFleetDb.Client
             return item;
         }
 
-        public T Get<T>(int id, string endpoint)
+        public T Get<T, K>(K id, string endpoint)
         {
             T item = default(T);
             HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
@@ -116,7 +116,7 @@ namespace VehicleFleetDb.Client
             response.EnsureSuccessStatusCode();
         }
 
-        public void Delete(int id, string endpoint)
+        public void Delete<T>(T id, string endpoint)
         {
             HttpResponseMessage response =
                 client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();

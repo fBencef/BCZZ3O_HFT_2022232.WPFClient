@@ -19,7 +19,6 @@ namespace VehicleFleetDb.Client
             {
                 Console.WriteLine("Format\nNAME#AGE");
                 string item = Console.ReadLine();
-                //driverLogic.Create(new Models.Driver(item));
                 rest.Post(new Driver(item), "driver");
                 Console.WriteLine("Driver created succesfully.");
             }
@@ -28,7 +27,7 @@ namespace VehicleFleetDb.Client
             {
                 Console.WriteLine("Format\nREG#MANUFACT#MODEL#LENGTH#REG.DATE(YYYY-MM-DD)");
                 string item = Console.ReadLine();
-                //vehicleLogic.Create(new Models.Vehicle(item));
+                rest.Post(new Vehicle(item), "vehicle");
                 Console.WriteLine("Vehicle created succesfully.");
             }
             //SHIFT
@@ -36,7 +35,7 @@ namespace VehicleFleetDb.Client
             {
                 Console.WriteLine("Format\nYARD#DATE(YYY-MM-DD)#LINE#TOUR#DRIVER ID#VEHICLE REG");
                 string item = Console.ReadLine();
-                //shiftLogic.Create(new Models.Shift(item));
+                rest.Post(new Shift(item), "shift");
                 Console.WriteLine("Shift created succesfully.");
             }
             WaitForReturn();
@@ -57,12 +56,22 @@ namespace VehicleFleetDb.Client
             //VEHICLE
             if (entity == "Vehicle")
             {
-
+                List<Vehicle> vehicles = rest.Get<Vehicle>("vehicle");
+                Console.WriteLine($"Reg.\tManufacturer\tModel\t\tLenght\tRegistration Date");
+                foreach (var item in vehicles)
+                {
+                    Console.WriteLine($"{item.Registration}\t{item.Manufacturer}\t{item.Model}\t{item.Length} m\t{item.RegistrationDate}");
+                }
             }
             //SHIFT
             if (entity == "Shift")
             {
-
+                List<Shift> shifts = rest.Get<Shift>("shift");
+                Console.WriteLine($"Id\tYard\t\tDate\t\tLine\tTour\tDriver\tVehicle");
+                foreach (var item in shifts)
+                {
+                    Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{item.DriverId}\t{item.VehicleId}");
+                }
             }
             WaitForReturn();
         }
@@ -73,7 +82,7 @@ namespace VehicleFleetDb.Client
             {
                 Console.Write("Enter driver ID: ");
                 int id = int.Parse(Console.ReadLine());
-                var updt = rest.Get<Driver>(id, "driver");
+                var updt = rest.Get<Driver, int>(id, "driver");
                 Console.Write($"New name of {updt.Name}: ");
                 string newName = Console.ReadLine();
                 updt.Name = newName;
@@ -85,27 +94,27 @@ namespace VehicleFleetDb.Client
             {
                 Console.Write("Enter vehicle registration (ABC123): ");
                 string reg = Console.ReadLine().ToUpper();
-                //var updt = vehicleLogic.Read(reg);
-                //Console.Write($"New registartion of {updt.Registration}: ");
+                var updt = rest.Get<Vehicle, string>(reg, "vehicle");
+                Console.Write($"New registartion of {updt.Registration}: ");
                 string newReg = Console.ReadLine().ToUpper();
-                //updt.DisplayReg = newReg;
+                updt.DisplayReg = newReg;
 
-                //vehicleLogic.Update(updt);
+                rest.Put<Vehicle>(updt, "vehicle");
             }
             //SHIFT
             if (entity == "Shift")
             {
                 Console.Write("Enter shift ID: ");
                 int id = int.Parse(Console.ReadLine());
-                //var updt = shiftLogic.Read(id);
-                //Console.Write($"New >line< of shift #{updt.ShiftId}: ");
+                var updt = rest.Get<Shift, int>(id, "shift");
+                Console.Write($"New >line< of shift #{updt.ShiftId}: ");
                 string newLine = Console.ReadLine();
-                //Console.Write($"New >tour< of shift #{updt.ShiftId}: ");
+                Console.Write($"New >tour< of shift #{updt.ShiftId}: ");
                 string newTour = Console.ReadLine();
-                //updt.Line = newLine;
-                //updt.Tour = newTour;
+                updt.Line = newLine;
+                updt.Tour = newTour;
 
-                //shiftLogic.Update(updt);
+                rest.Put<Shift>(updt, "shift");
             }
         }
         static void Delete(string entity)
@@ -115,7 +124,7 @@ namespace VehicleFleetDb.Client
             {
                 Console.Write("Enter driver ID: ");
                 int id = int.Parse(Console.ReadLine());
-                string name = rest.Get<Driver>(id, "driver").Name;
+                string name = rest.Get<Driver, int>(id, "driver").Name;
                 rest.Delete(id, "driver");
                 Console.WriteLine($"\nDriver {name} deleted. Press any key to continue.");
                 Console.ReadKey();
@@ -125,9 +134,10 @@ namespace VehicleFleetDb.Client
             {
                 Console.Write("Enter registration (ABC123): ");
                 string reg = Console.ReadLine().ToUpper();
-                //var vehicle = vehicleLogic.Read(reg);
+                var vehicle = rest.Get<Vehicle, string>(reg, "vehicle");
                 //vehicleLogic.Delete(reg);
-               // Console.WriteLine($"\nVehicle {vehicle.Registration} deleted. Press any key to continue.");
+                rest.Delete<string>(reg, "vehicle");
+                Console.WriteLine($"\nVehicle {vehicle.Registration} deleted. Press any key to continue.");
                 Console.ReadKey();
             }
             //SHIFT
@@ -135,9 +145,9 @@ namespace VehicleFleetDb.Client
             {
                 Console.Write("Enter shift ID: ");
                 int id = int.Parse(Console.ReadLine());
-                //var shift = shiftLogic.Read(id);
-                //shiftLogic.Delete(id);
-                //Console.WriteLine($"\nShift {shift.Line}/{shift.Tour} deleted. Press any key to continue.");
+                var shift = rest.Get<Shift, int>(id, "shift");
+                rest.Delete<int>(id, "shift");
+                Console.WriteLine($"\nShift {shift.Line}/{shift.Tour} deleted. Press any key to continue.");
                 Console.ReadKey();
             }
         }

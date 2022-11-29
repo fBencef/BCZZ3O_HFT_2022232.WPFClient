@@ -50,8 +50,9 @@ namespace VehicleFleetDb.Logic
         }
 
         //NON-CRUDs
-        public Driver GetDriver(Shift item)
+        public Driver GetDriver(int shiftId)
         {
+            Shift item = this.Read(shiftId);
             return item.Driver;
         }
     }

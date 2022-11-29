@@ -15,6 +15,8 @@ namespace VehicleFleetDb.Logic
         IEnumerable<Vehicle> ReadAll();
         void Update(Vehicle item);
 
-        //TODO NON-CRUDS
+        //NON-CRUDS
+        public IQueryable<string> ListModels(string manufacturer);
+        public IQueryable<Driver> ListDrivers(string registarton);
     }
 }

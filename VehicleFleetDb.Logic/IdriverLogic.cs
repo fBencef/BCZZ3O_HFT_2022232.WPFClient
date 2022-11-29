@@ -16,5 +16,7 @@ namespace VehicleFleetDb.Logic
         void Update(Driver item);
 
         //TODO NON-CRUDS
+        public double? AvgDriverAge();
+        public IQueryable<Shift> ShiftsOfDriverModified(string name);
     }
 }

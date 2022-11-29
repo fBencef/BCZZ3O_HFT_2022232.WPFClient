@@ -99,7 +99,7 @@ namespace BCZZ3O_HFT_2022231.Test
         [Test]
         public void ShiftsOfDriverTest()
         {
-            var shifts = driverLogic.ShiftsOdDriverModified("Driver1");
+            var shifts = driverLogic.ShiftsOfDriverModified("Driver1");
 
             Assert.That(shifts.ToArray()[0], Is.EqualTo(1));
         }
@@ -111,7 +111,7 @@ namespace BCZZ3O_HFT_2022231.Test
 
             //Shift shift = shiftLogic.Read(1);
             Shift shift = new Shift() { ShiftId = 1, FromYard = "Yard name", Date = DateTime.Parse("2022-11-02"), Line = "001", Tour = "F1", DriverId = 1, VehicleId = "AAA111" };
-            Driver item = shiftLogic.GetDriver(shift);
+            Driver item = shiftLogic.GetDriver(shift.DriverId);
             Assert.That(item.DriverId, Is.EqualTo(1));
         }
 

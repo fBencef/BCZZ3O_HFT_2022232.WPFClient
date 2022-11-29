@@ -15,6 +15,7 @@ namespace VehicleFleetDb.Logic
         IEnumerable<Shift> ReadAll();
         void Update(Shift item);
 
-        //TODO NON-CRUDS
+        //NON-CRUDS
+        public Driver GetDriver(int shiftId);
     }
 }

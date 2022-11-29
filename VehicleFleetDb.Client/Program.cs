@@ -154,18 +154,18 @@ namespace VehicleFleetDb.Client
 
         static void ShiftListWithDriverNames()
         {
-            //var items = shiftLogic.ReadAll();
+            var items = rest.Get<Shift>("shift");
             Console.WriteLine($"Id\tYard\t\tDate\t\tLine\tTour\tDriver Name\t\tVehicle");
-            /*foreach (var item in items)
+            foreach (var item in items)
             {
-                string name = shiftLogic.GetDriver(item).Name;
+                string name = rest.Get<Driver, int>(item.DriverId, "driver").Name;
                 Console.WriteLine($"{item.ShiftId}\t{item.FromYard}\t{item.Date.ToShortDateString()}\t{item.Line}\t{item.Tour}\t{name}\t\t{item.VehicleId}");
-            }*/
+            }
             WaitForReturn();
         }
         static void DriverAvgAge()
         {
-            //Console.WriteLine($"The average age of drivers is: {Math.Round((double)driverLogic.AvgDriverAge(), 2)} years.");
+            //Console.WriteLine($"The average age of drivers is: {Math.Round((double)rest.AvgDriverAge(), 2)} years.");
             WaitForReturn();
         }
         static void DriverShiftsModified()

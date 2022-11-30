@@ -40,9 +40,9 @@ namespace BCZZ3O_HFT_2022231.Endpoint.Controllers
             return this.vehicleLogic.ListModels(manufacturer);
         }
         [HttpGet("{registration}")]
-        public IQueryable<Driver> ListDrivers(string registarton)
+        public IQueryable<Driver> ListDrivers(string registration)
         {
-            return this.vehicleLogic.ListDrivers(registarton);
+            return this.vehicleLogic.ListDrivers(registration);
         }
 
         [HttpGet("shiftId")]

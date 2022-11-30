@@ -191,7 +191,7 @@ namespace VehicleFleetDb.Client
         {
             Console.Write("Enter a manufacturer: ");
             string manufacturer = Console.ReadLine();
-            /*var result = vehicleLogic.ListModels(manufacturer);
+            var result = rest.Get<string>($"NC/ListModels/{manufacturer}");
             if (result.ToArray().Length > 0)
             {
                 Console.WriteLine($"\nThe manufacturer {manufacturer} has the following models in the fleet:");
@@ -200,15 +200,15 @@ namespace VehicleFleetDb.Client
                     Console.WriteLine(item);
                 }
             }
-            else Console.WriteLine($"\nThe manufacturer \"{manufacturer}\" does not exist or has no models in the fleet.");*/
+            else Console.WriteLine($"\nThe manufacturer \"{manufacturer}\" does not exist or has no models in the fleet.");
             WaitForReturn();
         }
         static void VehcleListDrivers()
         {
             Console.Write("Enter a registration:");
-            string reg = Console.ReadLine().ToUpper(); ;
-            /*var results = vehicleLogic.ListDrivers(reg);
-            if (!results.IsNullOrEmpty())
+            string reg = Console.ReadLine().ToUpper();
+            var results = rest.Get<Driver>($"/NC/ListDrivers/{reg}");
+            if (results.Count() != 0)
             {
                 Console.WriteLine($"Vehicle {reg} is driven by:");
                 foreach (var item in results)
@@ -216,7 +216,7 @@ namespace VehicleFleetDb.Client
                     Console.WriteLine(item.Name);
                 }
             }
-            else Console.WriteLine("This vehicle has no drivers.");*/
+            else Console.WriteLine("This vehicle has no drivers.");
             WaitForReturn();
         }
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using System.Xml.XPath;
 using VehicleFleetDb.Models;
 
 namespace VehicleFleetDb.Client
@@ -165,15 +166,17 @@ namespace VehicleFleetDb.Client
         }
         static void DriverAvgAge()
         {
-            //Console.WriteLine($"The average age of drivers is: {Math.Round((double)rest.AvgDriverAge(), 2)} years.");
+            double avgAge = rest.GetSingle<double>("NC/AvgDriverAge");
+            Console.WriteLine($"The average age of drivers is: {Math.Round(avgAge, 2)} years.");
             WaitForReturn();
         }
         static void DriverShiftsModified()
         {
             Console.Write("Enter driver's name: ");
             string name = Console.ReadLine();
-            //var shifts = driverLogic.ShiftsOdDriverModified(name);
-            /*if (!shifts.IsNullOrEmpty())
+            var shifts = rest.Get<Shift>($"NC/ShiftsOfDriver/{name}");
+            // shifts = driverLogic.ShiftsOdDriverModified(name);
+            if (shifts.Count() != 0)
             {
                 Console.WriteLine($"Driver {name} has the following shifts: ");
                 foreach (var item in shifts)
@@ -181,7 +184,7 @@ namespace VehicleFleetDb.Client
                     Console.WriteLine($"{item.Line}/{item.Tour}");
                 }
             }
-            else Console.WriteLine("This driver has no active shifts.");*/
+            else Console.WriteLine("This driver has no active shifts.");
             WaitForReturn();
         }
         static void VehicleListModels()

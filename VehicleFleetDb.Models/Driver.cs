@@ -21,7 +21,7 @@ namespace VehicleFleetDb.Models
         public int Age { get; set; }
         [NotMapped]
         [JsonIgnore]
-        public virtual ICollection<Shift> Shifts { get; }
+        public virtual ICollection<Shift> Shifts { get; set; }
 
         public Driver()
         {

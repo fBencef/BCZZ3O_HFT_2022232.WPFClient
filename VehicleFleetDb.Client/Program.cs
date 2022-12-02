@@ -164,6 +164,39 @@ namespace VehicleFleetDb.Client
             }
             WaitForReturn();
         }
+        static void ShiftVehiclesOnLine()
+        {
+            Console.WriteLine("Enter a line number: ");
+            string line = Console.ReadLine();
+            var vehicles = rest.Get<Vehicle>($"NC/VehiclesOnLine/{line}");
+            if (vehicles.ToArray().Length != 0)
+            {
+                Console.WriteLine($"Vehicles on line {line}:");
+                foreach (var item in vehicles)
+                {
+                    Console.WriteLine($"{item.DisplayReg} ({item.Manufacturer} {item.Model})");
+                }
+            }
+            else Console.WriteLine("There are no vehicles on this line, or the line could not be found.");
+            WaitForReturn();
+        }
+        static void ShiftLengthOfVehiclesOnLine()
+        {
+
+            Console.WriteLine("Enter a line number: ");
+            string line = Console.ReadLine();
+            var lengths = rest.Get<int>($"NC/LengthOfVehiclesOnLine/{line}");
+            if (lengths.ToArray().Length != 0)
+            {
+                Console.WriteLine($"Vehicle lengths on line {line}:");
+                foreach (var item in lengths)
+                {
+                    Console.WriteLine(item + "m");
+                }
+            }
+            else Console.WriteLine("There are no vehicles on this line, or the line could not be found.");
+            WaitForReturn();
+        }
         static void DriverAvgAge()
         {
             double avgAge = rest.GetSingle<double>("NC/AvgDriverAge");
@@ -254,6 +287,8 @@ namespace VehicleFleetDb.Client
                 .Add("Update", () => Update("Shift"))
                 .Add("Delete", () => Delete("Shift"))
                 .Add("List With Driver Names", () => ShiftListWithDriverNames())
+                .Add("List Vehcles On A Line", () => ShiftVehiclesOnLine())
+                .Add("Lengths Of Vehcles On A Line", () => ShiftLengthOfVehiclesOnLine())
                 .Add("Back", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)

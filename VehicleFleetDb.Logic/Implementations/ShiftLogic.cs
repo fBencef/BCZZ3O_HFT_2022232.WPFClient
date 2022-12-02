@@ -55,5 +55,17 @@ namespace VehicleFleetDb.Logic
             Shift item = this.Read(shiftId);
             return item.Driver;
         }
+
+        public IQueryable<Vehicle> VehiclesOnLine(string line)
+        {
+            var shifts = this.ReadAll().Where(t => t.Line == line);
+            return shifts.Select(t => t.Vehicle);
+        }
+
+        public IQueryable<int> LengthOfVehiclesOnLine(string line)
+        {
+            var vehicles = this.VehiclesOnLine(line);
+            return vehicles.Select(t => t.Length).Distinct();
+        }
     }
 }

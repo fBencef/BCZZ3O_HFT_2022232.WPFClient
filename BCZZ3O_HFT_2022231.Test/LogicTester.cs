@@ -44,10 +44,11 @@ namespace BCZZ3O_HFT_2022231.Test
 
             /*
              * Cannot assign to nav. props >> read only. Changed to RW for the test to work.
-             * TODO: change it back to read only in the future >> solve mocking properly
+             * TODO: change it back to read only in the future >> solve mocking properly.
+             * This is ugly.
              */
-            //connections
-            //shifts
+            //Connections
+            //Shifts
             sh1.Vehicle = veh1;
             sh1.Driver = dr1;
             sh2.Vehicle = veh2;
@@ -56,7 +57,7 @@ namespace BCZZ3O_HFT_2022231.Test
             sh3.Driver = dr3;
             sh4.Vehicle = veh4;
             sh4.Driver = dr4;
-            //vehicles
+            //Vehicles
             veh1.Shifts = new List<Shift>();
             veh2.Shifts = new List<Shift>();
             veh3.Shifts = new List<Shift>();
@@ -65,7 +66,7 @@ namespace BCZZ3O_HFT_2022231.Test
             veh2.Shifts.Add(sh2);
             veh3.Shifts.Add(sh3);
             veh4.Shifts.Add(sh4);
-            //drivers
+            //Drivers
             dr1.Shifts = new List<Shift>();
             dr2.Shifts = new List<Shift>();
             dr3.Shifts = new List<Shift>();
@@ -96,8 +97,6 @@ namespace BCZZ3O_HFT_2022231.Test
                 sh3,
                 sh4
             }.AsQueryable());
-
-            //var mock = new Mock<FleetDbContext>();
 
             vehicleLogic = new VehicleLogic(mockVehicleRepo.Object);
             driverLogic = new DriverLogic(mockDriverRepo.Object);
@@ -155,14 +154,42 @@ namespace BCZZ3O_HFT_2022231.Test
         }
 
         [Test]
-        public void ShiftGetDriverTest()
+        public void VehicleListDriversTest()
         {
-            //Nem működik >> LAZY LOADING ???
+            var drivers = vehicleLogic.ListDrivers("DDD444");
+            Assert.That(drivers.ToArray<Driver>()[0].DriverId == 4);
+        }
 
-            Shift shift = shiftLogic.Read(1);
-            //Shift shift = new Shift() { ShiftId = 1, FromYard = "Yard name", Date = DateTime.Parse("2022-11-02"), Line = "001", Tour = "F1", DriverId = 1, VehicleId = "AAA111" };
-            Driver item = shiftLogic.GetDriver(1);
-            Assert.That(item.DriverId, Is.EqualTo(1));
+        [Test]
+        public void ShiftVehiclesOnLineTest()
+        {
+            var vehicles = shiftLogic.VehiclesOnLine("002");
+
+            Assert.That(vehicles.ToArray<Vehicle>()[0].Registration == "CCC333");
+        }
+
+        [Test]
+        public void ShiftVehiclesOnLineInvalidTest()
+        {
+            var vehicles = shiftLogic.VehiclesOnLine("100");
+
+            Assert.That(vehicles.ToArray<Vehicle>().Length == 0);
+        }
+
+        [Test]
+        public void ShiftLengthOfVehiclesOnLineTest()
+        {
+            var results = shiftLogic.LengthOfVehiclesOnLine("002");
+
+            Assert.That(results.ToArray()[0] == 18);
+        }
+
+        [Test]
+        public void ShiftLengthOfVehiclesOnLineDistinctTest()
+        {
+            var results = shiftLogic.LengthOfVehiclesOnLine("001");
+
+            Assert.That(results.ToArray().Length == 1);
         }
 
 

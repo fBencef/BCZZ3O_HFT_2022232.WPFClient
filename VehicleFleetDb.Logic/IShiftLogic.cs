@@ -17,5 +17,7 @@ namespace VehicleFleetDb.Logic
 
         //NON-CRUDS
         public Driver GetDriver(int shiftId);
+        public IQueryable<Vehicle> VehiclesOnLine(string line);
+        public IQueryable<int> LengthOfVehiclesOnLine(string line);
     }
 }

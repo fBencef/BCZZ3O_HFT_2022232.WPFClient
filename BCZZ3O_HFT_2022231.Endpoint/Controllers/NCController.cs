@@ -45,10 +45,22 @@ namespace BCZZ3O_HFT_2022231.Endpoint.Controllers
             return this.vehicleLogic.ListDrivers(registration);
         }
 
-        [HttpGet("shiftId")]
+        [HttpGet("{shiftId}")]
         public Driver GetDriver(int shiftId)
         {
             return this.shiftLogic.GetDriver(shiftId);
+        }
+
+        [HttpGet("{line}")]
+        public IQueryable<Vehicle> VehiclesOnLine(string line)
+        {
+            return this.shiftLogic.VehiclesOnLine(line);
+        }
+
+        [HttpGet("{line}")]
+        public IQueryable<int> LengthOfVehiclesOnLine(string line)
+        {
+            return this.shiftLogic.LengthOfVehiclesOnLine(line);
         }
     }
 }

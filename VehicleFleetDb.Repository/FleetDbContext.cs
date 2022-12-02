@@ -23,11 +23,12 @@ namespace VehicleFleetDb.Repository
         {
             if (!builder.IsConfigured)
             {
-                string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Repositories\VehicleFleet.mdf;Integrated Security=True;MultipleActiveResultSets=true";
-                builder
-                .UseSqlServer(conn)
-                .UseLazyLoadingProxies();
-
+                builder.UseInMemoryDatabase("database").UseLazyLoadingProxies();
+                
+                //string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Repositories\VehicleFleet.mdf;Integrated Security=True;MultipleActiveResultSets=true";
+                //builder
+                //.UseSqlServer(conn)
+                //.UseLazyLoadingProxies();
             }
         }
 

@@ -16,9 +16,6 @@
     <ProjectReference Include="..\BCZZ3O_HFT_2022231.Logic\BCZZ3O_HFT_2022231.Logic.csproj" />
     <ProjectReference Include="..\BCZZ3O_HFT_2022231.Models\BCZZ3O_HFT_2022231.Models.csproj" />
     <ProjectReference Include="..\BCZZ3O_HFT_2022231.Repository\BCZZ3O_HFT_2022231.Repository.csproj" />
-    <ProjectReference Include="..\VehicleFleetDb.Logic\BCZZ3O_HFT_2022231.Logic.csproj" />
-    <ProjectReference Include="..\VehicleFleetDb.Models\BCZZ3O_HFT_2022231.Models.csproj" />
-    <ProjectReference Include="..\VehicleFleetDb.Repository\BCZZ3O_HFT_2022231.Repository.csproj" />
   </ItemGroup>
 
 

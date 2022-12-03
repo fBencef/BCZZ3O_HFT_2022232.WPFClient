@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\VehicleFleetDb.Models\BCZZ3O_HFT_2022231.Models.csproj" />
+	  <ProjectReference Include="..\BCZZ3O_HFT_2022231.Models\BCZZ3O_HFT_2022231.Models.csproj" />
 	</ItemGroup>
 
 </Project>

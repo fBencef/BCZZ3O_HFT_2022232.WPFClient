@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BCZZ3O_HFT_2022231.WPFClient
+namespace BCZZ3O_HFT_2022231.Client
 {
     public class RestService
     {
@@ -414,3 +414,4 @@ namespace BCZZ3O_HFT_2022231.WPFClient
 
     }
 }
+

@@ -182,7 +182,7 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task DeleteAsync(int id, string endpoint)
+        public async Task DeleteAsync<T>(T id, string endpoint)
         {
             HttpResponseMessage response =
                 await client.DeleteAsync(endpoint + "/" + id.ToString());
@@ -389,7 +389,7 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             }
         }
 
-        public void Delete(int id)
+        public void Delete<K>(K id)
         {
             if (hasSignalR)
             {

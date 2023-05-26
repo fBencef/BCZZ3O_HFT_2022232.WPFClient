@@ -14,12 +14,17 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Vehicles}">
+        <ListBox ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding Registration}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Column="1">
+            <Button Content="Create Vehicle" Command="{Binding CreateVehicleCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Vehicle" Command="{Binding DeleteVehicleCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Vehicle" Command="{Binding UpdateVehicleCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
     </Grid>
 </Window>

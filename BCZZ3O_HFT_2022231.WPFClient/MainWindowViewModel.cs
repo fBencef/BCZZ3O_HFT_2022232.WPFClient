@@ -30,7 +30,17 @@ namespace BCZZ3O_HFT_2022231.WPFClient
         public Vehicle SelectedVehicle
         {
             get { return selectedVehicle; }
-            set { SetProperty(ref selectedVehicle, value);
+            set
+            {
+                if(value != null)
+                {
+                    selectedVehicle = new Vehicle()
+                    {
+                        DisplayReg = value.DisplayReg,
+                        Registration = value.Registration
+                    };
+                }
+                OnPropertyChanged();
                 (DeleteVehicleCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
@@ -59,15 +69,20 @@ namespace BCZZ3O_HFT_2022231.WPFClient
                     });
                 });
 
-            DeleteVehicleCommand = new RelayCommand(() =>
-            {
-                Vehicles.Delete<string>(SelectedVehicle.Registration);
-            },
-            () =>
-            {
-                return SelectedVehicle != null;
-            }
-            );
+                UpdateVehicleCommand = new RelayCommand(() =>
+                {
+                    Vehicles.Update(SelectedVehicle);
+                });
+
+                DeleteVehicleCommand = new RelayCommand(() =>
+                {
+                    Vehicles.Delete<string>(SelectedVehicle.Registration);
+                },
+                () =>
+                {
+                    return SelectedVehicle != null;
+                }
+                );
             }
         }
     }

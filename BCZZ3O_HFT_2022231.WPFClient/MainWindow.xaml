@@ -17,11 +17,13 @@
         <ListBox ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Registration}" />
+                    <Label Content="{Binding DisplayReg}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
+            <Label Content="Registration" Background="LightBlue" Padding="10" />
+            <TextBox Text="{Binding SelectedVehicle.DisplayReg}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Vehicle" Command="{Binding CreateVehicleCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Vehicle" Command="{Binding DeleteVehicleCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Vehicle" Command="{Binding UpdateVehicleCommand}" Margin="10" Padding="10"/>

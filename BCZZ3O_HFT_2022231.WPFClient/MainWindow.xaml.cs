@@ -36,5 +36,11 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             EditDriverWindow ed = new EditDriverWindow();
             ed.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            EditShiftWindow es = new EditShiftWindow();
+            es.Show();
+        }
     }
 }

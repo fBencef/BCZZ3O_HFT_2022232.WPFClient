@@ -24,6 +24,8 @@ namespace BCZZ3O_HFT_2022231.WPFClient
         }
 
         public RestCollection<Shift> Shifts { get; set; }
+        public RestCollection<Driver> Drivers { get; set; }
+        public RestCollection<Vehicle> Vehicles { get; set; }
         private Shift selectedShift;
 
         public Shift SelectedShift
@@ -42,8 +44,8 @@ namespace BCZZ3O_HFT_2022231.WPFClient
                         Tour = value.Tour,
                         DriverId = value.DriverId,
                         VehicleId = value.VehicleId,
-                        //Driver = value.Driver,
-                        //Vehicle = value.Vehicle
+                        Driver = value.Driver,
+                        Vehicle = value.Vehicle
                     };
                 }
                 OnPropertyChanged();
@@ -62,6 +64,8 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             if (!IsInDesignMode)
             {
                 Shifts = new RestCollection<Shift>("http://localhost:47322/", "shift", "hub");
+                Drivers = new RestCollection<Driver>("http://localhost:47322/", "driver", "hub");
+                Vehicles = new RestCollection<Vehicle>("http://localhost:47322/", "vehicle", "hub");
 
                 CreateShiftCommand = new RelayCommand(() =>
                 {
@@ -74,8 +78,8 @@ namespace BCZZ3O_HFT_2022231.WPFClient
                         Tour = SelectedShift.Tour,
                         DriverId = SelectedShift.DriverId,
                         VehicleId = SelectedShift.VehicleId,
-                        //Driver = SelectedShift.Driver,
-                        //Vehicle = SelectedShift.Vehicle
+                        Driver = Drivers.First(t => t.DriverId == SelectedShift.DriverId),
+                        Vehicle = Vehicles.First(t => t.Registration == SelectedShift.VehicleId),
                     });
                 });
 

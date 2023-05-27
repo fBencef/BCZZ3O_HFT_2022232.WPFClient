@@ -21,7 +21,7 @@
                         <Label Content="{Binding Line}" />
                         <Label Content="{Binding Tour}" />
                         <Label Content="{Binding VehicleId}" />
-                        <!--<Label Content="{Binding Driver.Name}" />-->
+                        <Label Content="{Binding Driver.Name}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -38,7 +38,7 @@
             <Label Content="Vehicle" Background="LightBlue" Padding="10" />
             <TextBox Text="{Binding SelectedShift.VehicleId}" Padding="10"/>
             <Label Content="Driver" Background="LightBlue" Padding="10" />
-            <!--<TextBox Text="{Binding SelectedShift.DriverId}" Padding="10"/>-->
+            <TextBox Text="{Binding SelectedShift.DriverId}" Padding="10"/>
 
             <Button Content="Create Shift" Command="{Binding CreateShiftCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Shift" Command="{Binding DeleteShiftCommand}" Margin="10" Padding="10"/>

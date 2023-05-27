@@ -37,7 +37,10 @@ namespace BCZZ3O_HFT_2022231.WPFClient
                     selectedVehicle = new Vehicle()
                     {
                         DisplayReg = value.DisplayReg,
-                        Registration = value.Registration
+                        Registration = value.Registration,
+                        Manufacturer = value.Manufacturer,
+                        Model = value.Model,
+                        Length = value.Length
                     };
                 }
                 OnPropertyChanged();
@@ -55,7 +58,7 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             
             if (!IsInDesignMode)
             {
-                Vehicles = new RestCollection<Vehicle>("http://localhost:47322/", "vehicle");
+                Vehicles = new RestCollection<Vehicle>("http://localhost:47322/", "vehicle", "hub");
 
                 CreateVehicleCommand = new RelayCommand(() =>
                 {
@@ -63,15 +66,16 @@ namespace BCZZ3O_HFT_2022231.WPFClient
                     {
                         Registration = SelectedVehicle.DisplayReg,
                         DisplayReg = SelectedVehicle.DisplayReg,
-                        Manufacturer = "aaa",
-                        Model = "bbb",
-                        Length = 12,
+                        Manufacturer = SelectedVehicle.Manufacturer,
+                        Model = SelectedVehicle.Model,
+                        Length = SelectedVehicle.Length,
                         RegistrationDate = DateTime.Now
                     });
                 });
 
                 UpdateVehicleCommand = new RelayCommand(() =>
                 {
+                    //NOT WORKING
                     Vehicles.Update(SelectedVehicle);
                 });
 

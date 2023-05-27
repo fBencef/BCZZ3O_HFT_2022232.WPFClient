@@ -1,3 +1,4 @@
+using BCZZ3O_HFT_2022231.Endpoint.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,8 @@ namespace BCZZ3O_HFT_2022231.Endpoint
             services.AddTransient<IDriverLogic, DriverLogic>();
             services.AddTransient<IShiftLogic, ShiftLogic>();
 
+            services.AddSignalR();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -74,6 +77,7 @@ namespace BCZZ3O_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

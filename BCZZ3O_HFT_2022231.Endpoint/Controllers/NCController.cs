@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BCZZ3O_HFT_2022231.Endpoint.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Linq;
 using VehicleFleetDb.Logic;
 using VehicleFleetDb.Models;
@@ -14,12 +16,14 @@ namespace BCZZ3O_HFT_2022231.Endpoint.Controllers
         IVehicleLogic vehicleLogic;
         IDriverLogic driverLogic;
         IShiftLogic shiftLogic;
+        IHubContext<SignalRHub> hub;
 
-        public NCController(IVehicleLogic vLogic, IDriverLogic dLogic, IShiftLogic sLogic)
+        public NCController(IVehicleLogic vLogic, IDriverLogic dLogic, IShiftLogic sLogic, IHubContext<SignalRHub> hub)
         {
             this.vehicleLogic = vLogic;
             this.driverLogic = dLogic;
             this.shiftLogic = sLogic;
+            this.hub = hub;
         }
 
         [HttpGet]

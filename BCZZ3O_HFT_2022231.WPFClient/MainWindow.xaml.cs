@@ -42,5 +42,11 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             EditShiftWindow es = new EditShiftWindow();
             es.Show();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            NonCRUDsWindow ncw = new NonCRUDsWindow();
+            ncw.Show();
+        }
     }
 }

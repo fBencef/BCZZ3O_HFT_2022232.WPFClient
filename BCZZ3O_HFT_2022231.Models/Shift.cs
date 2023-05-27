@@ -44,5 +44,10 @@ namespace VehicleFleetDb.Models
             DriverId = int.Parse(parts[4]);
             VehicleId = parts[5];
         }
+
+        public override string ToString()
+        {
+            return $"{Line}/{Tour} - {Vehicle.DisplayReg}";
+        }
     }
 }

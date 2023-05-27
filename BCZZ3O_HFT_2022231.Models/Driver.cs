@@ -34,5 +34,10 @@ namespace VehicleFleetDb.Models
             Name = parts[0];
             Age = int.Parse(parts[1]);
         }
+
+        public override string ToString()
+        {
+            return $"{DriverId} - {Name} - {Age}";
+        }
     }
 }

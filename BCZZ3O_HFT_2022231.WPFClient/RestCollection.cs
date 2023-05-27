@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
@@ -83,6 +84,21 @@ namespace BCZZ3O_HFT_2022231.WPFClient
             if (response.IsSuccessStatusCode)
             {
                 items = response.Content.ReadAsAsync<List<T>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return items;
+        }
+        public ObservableCollection<T> GetObservable<T>(string endpoint)
+        {
+            ObservableCollection<T> items = new ObservableCollection<T>();
+            HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                items = response.Content.ReadAsAsync<ObservableCollection<T>>().GetAwaiter().GetResult();
             }
             else
             {

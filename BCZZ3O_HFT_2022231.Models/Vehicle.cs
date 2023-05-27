@@ -44,5 +44,10 @@ namespace VehicleFleetDb.Models
             Length = int.Parse(parts[3]);
             RegistrationDate = DateTime.Parse(parts[4]);
         }
+
+        public override string ToString()
+        {
+            return $"{DisplayReg} - {Manufacturer} - {Model} - {Length}m";
+        }
     }
 }

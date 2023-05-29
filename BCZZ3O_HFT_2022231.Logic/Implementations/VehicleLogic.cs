@@ -19,7 +19,7 @@ namespace VehicleFleetDb.Logic
 
         public void Create(Vehicle item)
         {
-            if (item.Registration.Length != 6) throw new ArgumentException("Invalid licence plate!");
+            if (!(item.Registration.Length == 6 || item.Registration.Length == 7)) throw new ArgumentException("Invalid licence plate!");
             else this.repository.Create(item);
         }
 
@@ -42,7 +42,7 @@ namespace VehicleFleetDb.Logic
 
         public void Update(Vehicle item)
         {
-            this.repository.Read(item.Registration).Registration = item.DisplayReg;
+            this.repository.Update(item);
         }
 
         IEnumerable<Vehicle> IVehicleLogic.ReadAll()
